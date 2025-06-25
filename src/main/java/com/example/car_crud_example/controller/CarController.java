@@ -30,6 +30,18 @@ public class CarController {
         return ResponseEntity.ok(cars);
     }
 
+    @GetMapping("/get-car/{carId}")
+    public ResponseEntity<Car> getCar(@PathVariable Long carId) {
+        Optional<Car> car = carService.getCar(carId);
+
+        if (car.isPresent()) {
+            return ResponseEntity.ok(car.get());
+        }
+
+        return ResponseEntity.notFound().build();
+
+    }
+
     @PutMapping("/update/{carId}")
     public ResponseEntity<Car> updateCar(@PathVariable Long carId,
                                          @RequestBody Car carDetails) {
