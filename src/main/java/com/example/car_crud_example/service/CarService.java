@@ -46,16 +46,9 @@ public class CarService {
         return Optional.empty();
     }
 
-    public Optional<Car> deleteCar(Long carId) {
-        Optional<Car> optionalCar = carRepository.findById(carId);
-
-        if (optionalCar.isPresent()) {
-            carRepository.deleteById(carId);
-            return optionalCar;
-        }
-
-        return Optional.empty();
-
+    public Optional<Car> deleteCar (Car car) {
+        carRepository.delete(car);
+        return Optional.of(car);
     }
 
     public void deleteAllCars() {
