@@ -55,9 +55,9 @@ public class CarController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/delete/{carId}")
-    public ResponseEntity<Car> deleteCar(@PathVariable Long carId) {
-        Optional<Car> optionalCar = carService.deleteCar(carId);
+    @DeleteMapping("/delete")
+    public ResponseEntity<Car> deleteCar(@RequestBody Car car) {
+        Optional<Car> optionalCar = carService.deleteCar(car);
 
         if (optionalCar.isPresent()) {
             return ResponseEntity.ok().body(optionalCar.get());
